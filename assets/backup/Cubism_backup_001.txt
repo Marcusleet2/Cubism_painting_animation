@@ -1,0 +1,50 @@
+
+let i = 0
+let startAnimation = 2
+
+function preload() {
+  template = loadImage("assets/element/Cubism_painting_cropped_template.png");
+
+}
+
+function setup() {
+  createCanvas(368, 500);
+  angleMode(DEGREES);
+  imageMode(CENTER)
+}
+
+
+function draw() {
+  
+  background(50);
+
+  //frame rate
+  frameRate(100);
+
+  //background
+  push()
+  translate(184, 250);
+  rotate(i);
+  image(template, 0, 0);
+  pop()
+  
+
+  //contreol for rotating background
+  if (i == 0 || i == 180 || i == 360) {
+    startAnimation = 0
+  }
+
+  if (i > 360) {
+    i = 0
+  }
+
+  if (mouseIsPressed == true) {
+    startAnimation = 2
+  }
+  
+  i = i + startAnimation
+
+  //visual indicator
+  text(i, 80, 20)
+  text(mouseX + "," + mouseY, 20, 20)
+}

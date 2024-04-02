@@ -1,0 +1,87 @@
+
+let i = 0
+let startAnimation = 2
+
+function preload() {
+  template = loadImage("assets/element/Cubism_painting_cropped_template.png")
+  bg = loadImage("assets/element/Cubism_background.png")
+  greenM = loadImage("assets/element/mountain_green.png")
+  yellowM = loadImage("assets/element/mountain_yellow.png")
+  blueM = loadImage("assets/element/mountain_blue.png")
+  orangeM = loadImage("assets/element/mountain_orange.png")
+  darkBlueM = loadImage("assets/element/mountain_dark_blue.png")
+  lightYellowM = loadImage("assets/element/mountain_light_yellow.png")
+}
+
+function setup() {
+  createCanvas(368, 500)
+  angleMode(DEGREES)
+  imageMode(CENTER)
+}
+
+
+function draw() {
+  
+  background(50)
+
+  //frame rate
+  frameRate(100)
+
+  //background
+
+  push()
+  translate(184, 500)
+  rotate(i)
+  image(bg, 0, 0)
+  pop()
+
+  // push()
+  // translate(184, 250)
+  // rotate(i)
+  // image(template, 0, 0)
+  // pop()
+  
+
+  //control for rotating background
+  if (i == 0 || i == -90 || i == -180 || i == -270 || i == -360) {
+    startAnimation = 0
+  }
+
+  if (i < -360) {
+    i = 0
+  }
+
+  if (mouseIsPressed == true) {
+    startAnimation = 2
+  }
+  
+  i = i - startAnimation
+
+  //mountains
+  push()
+  translate(160, 220)
+
+  //mountain light yellow
+  image(lightYellowM, 0, 0)
+
+  //mountain dark blue
+  image(darkBlueM, 0, 0)
+
+  //mountain orange
+  image(orangeM, 0, 0)
+
+  //mountain blue
+  image(blueM, 0, 0)
+
+  //mountain yellow
+  image(yellowM, 0, 0)
+
+  //mountain green
+  image(greenM, 0, 0)
+
+  pop()
+  
+  //visual indicator
+  text(i, 80, 20)
+  text(mouseX + "," + mouseY, 20, 20)
+}
